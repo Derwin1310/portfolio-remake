@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --bg: #07101f;
+  --band: #091526;
+  --surface: rgba(10, 19, 38, 0.72);
+  --surface-strong: rgba(10, 19, 38, 0.9);
+  --surface-card: linear-gradient(180deg, rgba(12, 20, 40, 0.78), rgba(8, 16, 32, 0.92));
+  --surface-card-soft: linear-gradient(180deg, rgba(12, 20, 40, 0.72), rgba(8, 16, 32, 0.88));
+  --surface-input: rgba(255, 255, 255, 0.03);
+  --surface-subtle: rgba(255, 255, 255, 0.02);
+  --media-bg: #020817;
+  --page-bg:
+    radial-gradient(circle at 12% 14%, rgba(255, 107, 129, 0.16), transparent 24%),
+    radial-gradient(circle at 72% 12%, rgba(85, 214, 255, 0.15), transparent 28%),
+    radial-gradient(circle at 84% 66%, rgba(255, 107, 129, 0.1), transparent 16%),
+    linear-gradient(180deg, #081120 0%, #07101f 48%, #060d1c 100%);
+  --hero-glow:
+    radial-gradient(circle at top, rgba(85, 214, 255, 0.2), transparent 45%),
+    radial-gradient(circle at 18% 18%, rgba(255, 107, 129, 0.22), transparent 26%);
+  --projects-glow: radial-gradient(circle at 80% 12%, rgba(85, 214, 255, 0.08), transparent 22%);
+  --articles-glow: radial-gradient(circle at 14% 18%, rgba(255, 107, 129, 0.08), transparent 20%);
+  --chip: rgba(255, 255, 255, 0.045);
+  --text-primary: #f4f6fb;
+  --text-secondary: #b7c2d8;
+  --text-muted: #90a0bc;
+  --border-soft: rgba(120, 160, 220, 0.12);
+  --border-strong: rgba(132, 170, 230, 0.18);
+  --accent-coral: #ff6b81;
+  --accent-cyan: #55d6ff;
+  --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.28);
+  --shadow-strong: 0 40px 120px rgba(0, 0, 0, 0.52);
+}
+
+:root[data-theme='light'] {
+  --bg: #f3efe6;
+  --band: #ece5da;
+  --surface: rgba(255, 250, 244, 0.74);
+  --surface-strong: rgba(255, 250, 244, 0.92);
+  --surface-card: linear-gradient(180deg, rgba(255, 251, 246, 0.94), rgba(244, 238, 230, 0.98));
+  --surface-card-soft: linear-gradient(180deg, rgba(255, 251, 246, 0.9), rgba(241, 234, 225, 0.96));
+  --surface-input: rgba(17, 23, 43, 0.04);
+  --surface-subtle: rgba(17, 23, 43, 0.03);
+  --media-bg: #e7eef8;
+  --page-bg:
+    radial-gradient(circle at 12% 14%, rgba(240, 92, 118, 0.1), transparent 24%),
+    radial-gradient(circle at 72% 12%, rgba(0, 181, 217, 0.09), transparent 28%),
+    radial-gradient(circle at 84% 66%, rgba(240, 92, 118, 0.06), transparent 16%),
+    linear-gradient(180deg, #f7f4ee 0%, #f3efe6 52%, #ebe4d8 100%);
+  --hero-glow:
+    radial-gradient(circle at top, rgba(0, 181, 217, 0.09), transparent 42%),
+    radial-gradient(circle at 18% 18%, rgba(240, 92, 118, 0.12), transparent 24%);
+  --projects-glow: radial-gradient(circle at 80% 12%, rgba(0, 181, 217, 0.05), transparent 20%);
+  --articles-glow: radial-gradient(circle at 14% 18%, rgba(240, 92, 118, 0.05), transparent 18%);
+  --chip: rgba(20, 24, 39, 0.06);
+  --text-primary: #11172b;
+  --text-secondary: #465066;
+  --text-muted: #6c7486;
+  --border-soft: rgba(17, 23, 43, 0.09);
+  --border-strong: rgba(17, 23, 43, 0.15);
+  --accent-coral: #f05c76;
+  --accent-cyan: #00b5d9;
+  --shadow-soft: 0 20px 45px rgba(17, 23, 43, 0.08);
+  --shadow-strong: 0 40px 90px rgba(7, 11, 23, 0.42);
+}
+
+@theme {
+  --font-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "IBM Plex Sans", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--page-bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+a,
+button,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent-coral) 38%, white);
+  color: var(--text-primary);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.dark-hidden,
+.light-hidden {
+  display: inline-flex;
+}
+
+[data-nav-link][data-active='true'] {
+  color: var(--text-primary);
+}
+
+[data-nav-link][data-active='true']::after {
+  content: "";
+  display: block;
+  height: 2px;
+  margin-top: 0.45rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-coral), var(--accent-cyan));
+  box-shadow: 0 0 18px color-mix(in oklab, var(--accent-cyan) 45%, transparent);
+}
+
+:root[data-theme='dark'] .dark-hidden {
+  display: none;
+}
+
+:root[data-theme='light'] .light-hidden {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
