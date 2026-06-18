@@ -1,0 +1,113 @@
+---
+import type { PortfolioContent } from '../../data/portfolio';
+import Icon from '../Icon.astro';
+
+interface Props {
+  content: PortfolioContent['contact'];
+}
+
+const { content } = Astro.props;
+const inputClass =
+  'min-h-12 rounded-lg border border-[var(--border-strong)] bg-[var(--surface-input)] px-4 text-[var(--text-primary)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[var(--accent-coral)]';
+---
+
+<section
+  id="contact"
+  class="mx-auto min-h-[48rem] max-w-6xl border-t border-[var(--border-soft)] px-4 py-24 sm:px-6 lg:px-8"
+>
+  <div class="mx-auto flex max-w-5xl flex-col items-center gap-10 text-center">
+    <div class="max-w-3xl">
+      <p
+        class="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--accent-coral)]"
+      >
+        {content.eyebrow}
+      </p>
+      <h2
+        class="mt-5 font-display text-[2.4rem] font-semibold tracking-[-0.03em] text-[var(--text-primary)] sm:text-[2.9rem]"
+      >
+        {content.headline}
+      </h2>
+      <p class="mt-6 text-base leading-8 text-[var(--text-secondary)]">
+        {content.description}
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-center gap-5">
+      {
+        content.socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noreferrer"
+            class="flex items-center gap-3 text-sm text-[var(--accent-cyan)] transition hover:text-[var(--text-primary)]"
+          >
+            <Icon name={link.icon} class="size-5" />
+            <span>{link.label}</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <div
+      class="w-full rounded-[1rem] border border-[var(--border-strong)] bg-[var(--surface-card-soft)] p-5 text-left shadow-[var(--shadow-soft)] md:p-7"
+    >
+      <p class="font-display text-[1.7rem] text-[var(--accent-coral)]">
+        {content.formTitle}
+      </p>
+      <form
+        action={content.formAction}
+        method="POST"
+        class="mt-5 grid gap-4 sm:grid-cols-2"
+      >
+        <label class="grid gap-2 text-sm text-[var(--text-primary)]">
+          <span>{content.firstName}</span>
+          <input
+            name="firstName"
+            required
+            placeholder={content.firstName}
+            class={inputClass}
+          />
+        </label>
+        <label class="grid gap-2 text-sm text-[var(--text-primary)]">
+          <span>{content.lastName}</span>
+          <input
+            name="lastName"
+            required
+            placeholder={content.lastName}
+            class={inputClass}
+          />
+        </label>
+        <label
+          class="grid gap-2 text-sm text-[var(--text-primary)] sm:col-span-2"
+        >
+          <span>{content.email}</span>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder={content.email}
+            class={inputClass}
+          />
+        </label>
+        <label
+          class="grid gap-2 text-sm text-[var(--text-primary)] sm:col-span-2"
+        >
+          <span>{content.message}</span>
+          <textarea
+            name="message"
+            required
+            rows="5"
+            placeholder={content.messagePlaceholder}
+            class="rounded-lg border border-[var(--border-strong)] bg-[var(--surface-input)] px-4 py-3 text-[var(--text-primary)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[var(--accent-coral)]"
+          ></textarea>
+        </label>
+        <button
+          type="submit"
+          class="inline-flex min-h-12 items-center justify-center rounded-lg border border-[color:color-mix(in_oklab,var(--accent-coral)_78%,white)] bg-[color:color-mix(in_oklab,var(--accent-coral)_16%,transparent)] px-6 text-base font-semibold text-[var(--accent-coral)] transition hover:bg-[var(--accent-coral)] hover:text-[var(--bg)] sm:col-span-2"
+        >
+          {content.submit}
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

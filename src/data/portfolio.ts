@@ -133,7 +133,7 @@ const sharedSocialLinks: SocialLink[] = [
   },
 ];
 
-export const portfolioContent: Record<Locale, PortfolioContent> = {
+export const portfolioContent = {
   en: {
     seo: {
       title: 'Derwin Romero | Full Stack Developer',
@@ -156,7 +156,16 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       primaryCta: 'Download Resume',
       secondaryCta: "Let's Connect",
       stackLabel: 'Tech stack',
-      stack: ['TypeScript', 'React', 'Next.js', 'Effect', 'TanStack', 'React Native', 'Expo', 'GraphQL'],
+      stack: [
+        'TypeScript',
+        'React',
+        'Next.js',
+        'Effect',
+        'TanStack',
+        'React Native',
+        'Expo',
+        'GraphQL',
+      ],
       resumeHref,
     },
     about: {
@@ -166,7 +175,8 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       strengthLabel: 'Core strength',
       summary:
         'I specialize in building end-to-end product experiences, from polished frontend interfaces to the backend workflows and integrations that support them.',
-      emphasis: 'I care about type-safe systems, strong product thinking, and shipping features that scale.',
+      emphasis:
+        'I care about type-safe systems, strong product thinking, and shipping features that scale.',
       highlights: [
         {
           icon: 'workflow',
@@ -194,7 +204,23 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
         },
       ],
       technologiesLabel: 'Technologies I use',
-      technologies: ['TypeScript', 'React', 'Next.js', 'Effect', 'TanStack suite', 'GraphQL', 'Vite', 'React Native', 'Expo', 'Redis', 'SQL', 'SQLite', 'Tailwind CSS', 'Zustand', 'React Hook Form'],
+      technologies: [
+        'TypeScript',
+        'React',
+        'Next.js',
+        'Effect',
+        'TanStack suite',
+        'GraphQL',
+        'Vite',
+        'React Native',
+        'Expo',
+        'Redis',
+        'SQL',
+        'SQLite',
+        'Tailwind CSS',
+        'Zustand',
+        'React Hook Form',
+      ],
     },
     projects: {
       title: 'Selected Work',
@@ -208,7 +234,8 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           image:
             'https://raw.githubusercontent.com/Derwin1310/assets-for-portfolio/main/about-imgs/pokedex.webp',
           techs: ['React', 'Sass', 'API'],
-          summary: 'A lightweight product-style interface built around API consumption and responsive component patterns.',
+          summary:
+            'A lightweight product-style interface built around API consumption and responsive component patterns.',
           description: 'A pokedex app',
           cta: 'Visit project',
           href: 'https://derwin1310.github.io/Pokeapi/',
@@ -218,7 +245,8 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           image:
             'https://raw.githubusercontent.com/Derwin1310/assets-for-portfolio/main/about-imgs/gif-buddy-img.webp',
           techs: ['React', 'Vite', 'CSS'],
-          summary: 'A search-focused UI with fast feedback loops, simple interaction design, and lightweight frontend architecture.',
+          summary:
+            'A search-focused UI with fast feedback loops, simple interaction design, and lightweight frontend architecture.',
           description:
             'A compact GIF search app that reflects my interest in snappy user flows, clean state handling, and frontend polish.',
           cta: 'Visit project',
@@ -331,7 +359,16 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       primaryCta: 'Descargar CV',
       secondaryCta: 'Conectemos',
       stackLabel: 'Stack',
-      stack: ['TypeScript', 'React', 'Next.js', 'Effect', 'TanStack', 'React Native', 'Expo', 'GraphQL'],
+      stack: [
+        'TypeScript',
+        'React',
+        'Next.js',
+        'Effect',
+        'TanStack',
+        'React Native',
+        'Expo',
+        'GraphQL',
+      ],
       resumeHref,
     },
     about: {
@@ -341,7 +378,8 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       strengthLabel: 'Fortaleza clave',
       summary:
         'Me especializo en construir experiencias de producto de punta a punta, desde interfaces cuidadas hasta workflows backend e integraciones que las sostienen.',
-      emphasis: 'Me importan los sistemas type-safe, el criterio de producto y entregar funcionalidades que escalen.',
+      emphasis:
+        'Me importan los sistemas type-safe, el criterio de producto y entregar funcionalidades que escalen.',
       highlights: [
         {
           icon: 'workflow',
@@ -369,7 +407,27 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
         },
       ],
       technologiesLabel: 'Tecnologias que uso',
-      technologies: ['TypeScript', 'React', 'Next.js', 'Effect', 'TanStack Query', 'TanStack Router', 'GraphQL', 'Apollo', 'Nx', 'Vite', 'React Native', 'Expo', 'Redis', 'SQL', 'SQLite', 'Tailwind CSS', 'Zustand', 'AWS', 'Firebase'],
+      technologies: [
+        'TypeScript',
+        'React',
+        'Next.js',
+        'Effect',
+        'TanStack Query',
+        'TanStack Router',
+        'GraphQL',
+        'Apollo',
+        'Nx',
+        'Vite',
+        'React Native',
+        'Expo',
+        'Redis',
+        'SQL',
+        'SQLite',
+        'Tailwind CSS',
+        'Zustand',
+        'AWS',
+        'Firebase',
+      ],
     },
     projects: {
       title: 'Trabajo Seleccionado',
@@ -383,7 +441,8 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           image:
             'https://raw.githubusercontent.com/Derwin1310/assets-for-portfolio/main/about-imgs/pokedex.webp',
           techs: ['React', 'Sass', 'API'],
-          summary: 'Un proyecto liviano construido sobre consumo de APIs y patrones de UI responsiva.',
+          summary:
+            'Un proyecto liviano construido sobre consumo de APIs y patrones de UI responsiva.',
           description:
             'Un proyecto frontend construido mientras exploraba la PokeAPI, patrones de UI reutilizables y una arquitectura de informacion mas clara.',
           cta: 'Visitar proyecto',
@@ -394,7 +453,8 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           image:
             'https://raw.githubusercontent.com/Derwin1310/assets-for-portfolio/main/about-imgs/gif-buddy-img.webp',
           techs: ['React', 'Vite', 'CSS'],
-          summary: 'Una experiencia compacta de busqueda de GIFs con resultados rapidos y feedback claro.',
+          summary:
+            'Una experiencia compacta de busqueda de GIFs con resultados rapidos y feedback claro.',
           description:
             'Una aplicacion de busqueda de GIFs que refleja mi interes por flujos rapidos, manejo limpio de estado y pulido frontend.',
           cta: 'Visitar proyecto',
@@ -485,4 +545,4 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
       builtWith: 'Construido con Astro, TypeScript y Tailwind CSS.',
     },
   },
-};
+} satisfies Record<Locale, PortfolioContent>;

@@ -1,0 +1,69 @@
+---
+import type { PortfolioContent } from '../../data/portfolio';
+import Icon from '../Icon.astro';
+
+interface Props {
+  content: PortfolioContent['articles'];
+}
+
+const { content } = Astro.props;
+---
+
+<section
+  id="articles"
+  class="relative border-t border-[var(--border-soft)] py-14"
+>
+  <div
+    class="pointer-events-none absolute inset-0"
+    style="background: var(--articles-glow);"
+  >
+  </div>
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <p
+      class="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--accent-coral)]"
+    >
+      {content.eyebrow}
+    </p>
+
+    <div class="mt-6 grid gap-6">
+      {
+        content.items.map((article) => (
+          <article class="grid overflow-hidden rounded-[1rem] border border-[var(--border-strong)] bg-[var(--surface-card)] shadow-[var(--shadow-soft)] md:grid-cols-[0.72fr_1.28fr]">
+            <div class="aspect-[16/10] overflow-hidden bg-[var(--media-bg)] md:aspect-auto">
+              <img
+                src={article.image}
+                alt={article.title}
+                loading="lazy"
+                class="h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
+              />
+            </div>
+            <div class="p-6 md:p-7">
+              <h3 class="max-w-2xl font-display text-[1.9rem] leading-tight text-[var(--text-primary)]">
+                {article.title}
+              </h3>
+              <p class="mt-4 max-w-2xl text-sm leading-7 text-[var(--text-secondary)]">
+                {article.description}
+              </p>
+              <div class="mt-5 flex flex-wrap items-center gap-4 text-xs text-[var(--text-muted)]">
+                <span>{article.date}</span>
+                <span>{content.readTimeLabel}</span>
+                <span class="text-[var(--accent-cyan)]">
+                  {content.topicsLabel}
+                </span>
+              </div>
+              <a
+                href={article.href}
+                target="_blank"
+                rel="noreferrer"
+                class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--text-primary)] transition hover:text-[var(--accent-coral)]"
+              >
+                <span>{content.sourceLabel}</span>
+                <Icon name="external" class="size-4" />
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+---
+import type { PortfolioContent } from '../../data/portfolio';
+import Icon from '../Icon.astro';
+
+interface Props {
+  content: PortfolioContent['projects'];
+}
+
+const { content } = Astro.props;
+---
+
+<section
+  id="projects"
+  class="relative border-t border-[var(--border-soft)] py-14"
+>
+  <div
+    class="pointer-events-none absolute inset-0"
+    style="background: var(--projects-glow);"
+  >
+  </div>
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between gap-4">
+      <p
+        class="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--accent-coral)]"
+      >
+        {content.eyebrow}
+      </p>
+      <a
+        href="#contact"
+        class="text-sm font-medium text-[var(--accent-cyan)] transition hover:text-[var(--text-primary)]"
+      >
+        {content.viewAllLabel}
+      </a>
+    </div>
+
+    <div class="mt-6 grid gap-5 xl:grid-cols-2">
+      {
+        content.items.map((project) => (
+          <article class="grid overflow-hidden rounded-[1rem] border border-[var(--border-strong)] bg-[var(--surface-card)] shadow-[var(--shadow-soft)] md:grid-cols-[0.88fr_1.12fr]">
+            <div class="aspect-[4/4] overflow-hidden bg-[var(--media-bg)] md:aspect-auto">
+              <img
+                src={project.image}
+                alt={project.name}
+                loading="lazy"
+                class="h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
+              />
+            </div>
+            <div class="p-5">
+              <h3 class="font-display text-[1.7rem] text-[var(--text-primary)]">
+                {project.name}
+              </h3>
+              <p class="mt-3 text-sm leading-6 text-[var(--text-secondary)]">
+                {project.summary ?? project.description}
+              </p>
+              <p class="mt-3 text-sm leading-6 text-[var(--text-secondary)]">
+                {project.description}
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                {project.techs.map((tech) => (
+                  <span class="rounded-lg border border-[var(--border-strong)] bg-[var(--chip)] px-2.5 py-1 text-[0.7rem] font-medium text-[var(--text-secondary)]">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                class="mt-5 inline-flex items-center gap-2 rounded-lg border border-[var(--border-strong)] px-3 py-2 text-sm font-semibold text-[var(--text-primary)] transition hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
+              >
+                <span>{project.cta}</span>
+                <Icon name="external" class="size-4" />
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -4,8 +4,9 @@ import Icon from './Icon.astro';
 
 <button
   type="button"
-  class="theme-toggle inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface-strong)] text-[var(--text-primary)] transition hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
+  class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface-strong)] text-[var(--text-primary)] transition hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
   aria-label="Toggle theme"
+  data-theme-toggle
 >
   <span class="theme-toggle__sun block dark-hidden">
     <Icon name="moon" class="size-5" />
@@ -15,24 +16,31 @@ import Icon from './Icon.astro';
   </span>
 </button>
 
-<script is:inline>
+<script>
   const root = document.documentElement;
   const storageKey = 'portfolio-theme';
 
-  const applyTheme = (theme) => {
+  type Theme = 'dark' | 'light';
+
+  const isTheme = (value: string | null): value is Theme =>
+    value === 'dark' || value === 'light';
+
+  const applyTheme = (theme: Theme) => {
     root.dataset.theme = theme;
   };
 
-  const initialTheme =
-    localStorage.getItem(storageKey) || 'dark';
+  const storedTheme = localStorage.getItem(storageKey);
+  const initialTheme = isTheme(storedTheme) ? storedTheme : 'dark';
 
   applyTheme(initialTheme);
 
-  const button = document.querySelector('.theme-toggle');
-
-  button?.addEventListener('click', () => {
-    const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-    localStorage.setItem(storageKey, nextTheme);
-    applyTheme(nextTheme);
-  });
+  document
+    .querySelectorAll<HTMLButtonElement>('[data-theme-toggle]')
+    .forEach((button) => {
+      button.addEventListener('click', () => {
+        const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem(storageKey, nextTheme);
+        applyTheme(nextTheme);
+      });
+    });
 </script>

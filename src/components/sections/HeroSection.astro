@@ -1,0 +1,88 @@
+---
+import type { PortfolioContent } from '../../data/portfolio';
+import Icon from '../Icon.astro';
+
+interface Props {
+  content: PortfolioContent['hero'];
+}
+
+const { content } = Astro.props;
+---
+
+<section
+  class="relative mx-auto grid min-h-[calc(100svh-5.25rem)] max-w-6xl items-center gap-12 px-4 pb-18 pt-14 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pb-24 lg:pt-16"
+>
+  <div class="relative z-10">
+    <h1
+      class="max-w-3xl font-display tracking-[-0.04em] text-[var(--text-primary)]"
+    >
+      <span class="block text-5xl font-semibold sm:text-6xl lg:text-[4.35rem]"
+        >{content.name}</span
+      >
+      <span
+        class="mt-2 block text-4xl font-semibold sm:text-5xl lg:text-[4rem]"
+      >
+        <span class="text-[var(--accent-coral)]">{content.roleAccent}</span>
+        {content.roleTitle}
+      </span>
+    </h1>
+
+    <p
+      class="mt-8 max-w-xl text-lg leading-8 text-[var(--text-secondary)] sm:text-[1.35rem]"
+    >
+      {content.intro}
+    </p>
+
+    <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+      <a
+        href={content.resumeHref}
+        download="Derwin-Romero-CV.pdf"
+        class="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--accent-coral)] px-6 py-3.5 text-sm font-semibold text-[var(--bg)] shadow-[0_18px_34px_rgba(255,107,129,0.22)] transition hover:translate-y-[-1px]"
+      >
+        <span>{content.primaryCta}</span>
+        <Icon name="external" class="size-4" />
+      </a>
+      <a
+        href="#contact"
+        class="inline-flex items-center justify-center rounded-xl border border-[var(--border-strong)] bg-[var(--surface-subtle)] px-6 py-3.5 text-sm font-semibold text-[var(--text-primary)] transition hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
+      >
+        <span>{content.secondaryCta}</span>
+      </a>
+    </div>
+
+    <div class="mt-10">
+      <p
+        class="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--text-muted)]"
+      >
+        {content.stackLabel}
+      </p>
+      <div class="mt-5 flex flex-wrap items-center gap-5">
+        {
+          content.stack.map((tech) => (
+            <span class="text-sm font-semibold text-[var(--text-primary)]/95">
+              {tech}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="relative">
+    <div
+      class="absolute right-8 top-6 hidden h-52 w-52 rounded-full bg-[var(--accent-cyan)]/18 blur-3xl lg:block"
+    >
+    </div>
+    <div
+      class="absolute left-10 top-1/2 hidden h-40 w-40 -translate-y-1/2 rounded-full bg-[var(--accent-coral)]/18 blur-3xl lg:block"
+    >
+    </div>
+    <div class="relative">
+      <img
+        src="/images/hero-dev-illustration.png"
+        alt="Abstract developer workstation hero visual with code panel and interface glow"
+        class="relative z-10 ml-auto w-full max-w-[42rem] object-contain"
+      />
+    </div>
+  </div>
+</section>
