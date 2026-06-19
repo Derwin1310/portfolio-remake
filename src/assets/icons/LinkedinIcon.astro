@@ -1,0 +1,15 @@
+---
+const { class: className = 'size-5', ...attributes } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 24 24"
+  fill="currentColor"
+  aria-hidden="true"
+  {...attributes}
+>
+  <path
+    d="M6.94 8.5A1.56 1.56 0 1 0 6.94 5.38a1.56 1.56 0 0 0 0 3.12ZM5.62 9.75h2.64v8.63H5.62V9.75Zm4.18 0h2.54v1.18h.04c.35-.67 1.22-1.38 2.51-1.38 2.68 0 3.17 1.8 3.17 4.14v4.69h-2.64v-4.16c0-.99-.02-2.27-1.35-2.27-1.36 0-1.57 1.09-1.57 2.2v4.23H9.8V9.75Z"
+  ></path>
+</svg>

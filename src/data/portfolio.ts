@@ -34,7 +34,7 @@ export interface Article {
 export interface SocialLink {
   label: string;
   href: string;
-  icon: 'github' | 'linkedin' | 'facebook';
+  icon: 'github' | 'linkedin' | 'x';
 }
 
 export interface PortfolioContent {
@@ -105,6 +105,9 @@ export interface PortfolioContent {
     message: string;
     messagePlaceholder: string;
     submit: string;
+    submitting: string;
+    submitSuccess: string;
+    submitError: string;
     socialLinks: SocialLink[];
     formAction: string;
   };
@@ -127,9 +130,9 @@ const sharedSocialLinks: SocialLink[] = [
     icon: 'linkedin',
   },
   {
-    label: 'Facebook',
-    href: 'https://www.facebook.com/derwin.romero1310',
-    icon: 'facebook',
+    label: 'X',
+    href: 'https://x.com/derwin1310',
+    icon: 'x',
   },
 ];
 
@@ -330,6 +333,9 @@ export const portfolioContent = {
       message: 'Message',
       messagePlaceholder: 'Type your message',
       submit: 'Submit',
+      submitting: 'Sending...',
+      submitSuccess: 'Thanks, your message has been sent.',
+      submitError: 'Something went wrong. Please try again.',
       socialLinks: sharedSocialLinks,
       formAction: 'https://formspree.io/f/mbjweyop',
     },
@@ -538,6 +544,9 @@ export const portfolioContent = {
       message: 'Mensaje',
       messagePlaceholder: 'Escribe tu mensaje',
       submit: 'Enviar',
+      submitting: 'Enviando...',
+      submitSuccess: 'Gracias, tu mensaje fue enviado.',
+      submitError: 'Algo salio mal. Intentalo de nuevo.',
       socialLinks: sharedSocialLinks,
       formAction: 'https://formspree.io/f/mbjweyop',
     },

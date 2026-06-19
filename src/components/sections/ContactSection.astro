@@ -57,15 +57,17 @@ const inputClass =
       class="interactive-card w-full rounded-2xl border border-(--border-strong) bg-(--surface-card-soft) p-5 text-left [box-shadow:var(--shadow-soft)] md:p-7"
       data-reveal="slide-up"
     >
-      <p
-        class="font-display text-[1.7rem] text-(--accent-coral)"
-      >
+      <p class="font-display text-[1.7rem] text-(--accent-coral)">
         {content.formTitle}
       </p>
       <form
         action={content.formAction}
         method="POST"
         class="mt-5 grid gap-4 sm:grid-cols-2"
+        data-contact-form
+        data-submitting={content.submitting}
+        data-success={content.submitSuccess}
+        data-error={content.submitError}
       >
         <label class="grid gap-2 text-sm text-(--text-primary)">
           <span>{content.firstName}</span>
@@ -85,9 +87,7 @@ const inputClass =
             class={inputClass}
           />
         </label>
-        <label
-          class="grid gap-2 text-sm text-(--text-primary) sm:col-span-2"
-        >
+        <label class="grid gap-2 text-sm text-(--text-primary) sm:col-span-2">
           <span>{content.email}</span>
           <input
             type="email"
@@ -97,9 +97,7 @@ const inputClass =
             class={inputClass}
           />
         </label>
-        <label
-          class="grid gap-2 text-sm text-(--text-primary) sm:col-span-2"
-        >
+        <label class="grid gap-2 text-sm text-(--text-primary) sm:col-span-2">
           <span>{content.message}</span>
           <textarea
             name="message"
@@ -112,10 +110,33 @@ const inputClass =
         <button
           type="submit"
           class="magnetic-link inline-flex min-h-12 items-center justify-center rounded-lg border border-[color-mix(in_oklab,var(--accent-coral)_78%,white)] bg-[color-mix(in_oklab,var(--accent-coral)_16%,transparent)] px-6 text-base font-semibold text-(--accent-coral) transition hover:bg-(--accent-coral) hover:text-(--bg) sm:col-span-2"
+          data-contact-submit
         >
-          {content.submit}
+          <Icon
+            name="loader"
+            class="hidden size-5 animate-spin"
+            data-contact-spinner
+          />
+          <span data-contact-submit-label>{content.submit}</span>
         </button>
+        <p
+          class="hidden items-center gap-3 rounded-lg border px-4 py-3 text-sm sm:col-span-2"
+          aria-live="polite"
+          data-contact-status
+        >
+          <span
+            class="flex size-6 shrink-0 items-center justify-center rounded-full"
+            data-contact-status-icon
+          >
+            <Icon name="check" class="size-4" />
+          </span>
+          <span data-contact-status-message></span>
+        </p>
       </form>
     </div>
   </div>
 </section>
+
+<script>
+  import 'scripts/contact-form';
+</script>
