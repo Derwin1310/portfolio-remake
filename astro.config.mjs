@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import cloudflare from '@astrojs/cloudflare';
+
 /**
  * @param {string} path
  */
@@ -17,6 +19,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+
   vite: {
     plugins: [tailwindcss()],
     resolve: {
@@ -38,4 +41,6 @@ export default defineConfig({
       ],
     },
   },
+
+  adapter: cloudflare(),
 });
