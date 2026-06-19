@@ -1,6 +1,6 @@
 ---
-import type { PortfolioContent } from '../../data/portfolio';
-import Icon from '../Icon.astro';
+import type { PortfolioContent } from 'data/portfolio';
+import Icon from 'components/ui/Icon.astro';
 
 interface Props {
   content: PortfolioContent['about'];
@@ -11,49 +11,57 @@ const { content } = Astro.props;
 
 <section
   id="about"
-  class="mx-auto max-w-6xl border-t border-[var(--border-soft)] px-4 py-14 sm:px-6 lg:px-8"
+  class="mx-auto max-w-6xl border-t border-(--border-soft) px-4 py-14 sm:px-6 lg:px-8"
 >
-  <p
-    class="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--accent-coral)]"
-  >
-    {content.eyebrow}
-  </p>
+  <div data-reveal="slide-up">
+    <p
+      class="text-xs font-semibold uppercase tracking-[0.22em] text-(--accent-coral)"
+    >
+      {content.eyebrow}
+    </p>
+  </div>
   <div class="mt-4 grid gap-5 lg:grid-cols-[1.05fr_1.15fr]">
-    <div>
+    <div data-reveal="slide-up">
       <h2
-        class="max-w-md font-display text-[2.1rem] font-semibold leading-tight text-[var(--text-primary)]"
+        class="max-w-md font-display text-[2.1rem] font-semibold leading-tight text-(--text-primary)"
       >
         {content.heading}
       </h2>
-      <p class="mt-5 max-w-lg text-sm leading-7 text-[var(--text-secondary)]">
+      <p
+        class="mt-5 max-w-lg text-sm leading-7 text-(--text-secondary)"
+      >
         {content.summary}
-        <span class="text-[var(--text-primary)]">{content.emphasis}</span>
+        <span class="text-(--text-primary)">{content.emphasis}</span>
       </p>
     </div>
 
     <div class="grid gap-4 sm:grid-cols-2">
       {
-        content.highlights.map((highlight) => (
-          <article class="group relative overflow-hidden rounded-[1.15rem] border border-[var(--border-strong)] bg-[var(--surface-card)] p-5 shadow-[var(--shadow-soft)] transition duration-300 hover:-translate-y-1 hover:border-[color:color-mix(in_oklab,var(--accent-cyan)_38%,var(--border-strong))] hover:shadow-[var(--shadow-strong)] md:min-h-[220px] md:p-6">
+        content.highlights.map((highlight, index) => (
+          <article
+            class="interactive-card group relative overflow-hidden rounded-[1.15rem] border border-(--border-strong) bg-(--surface-card) p-5 [box-shadow:var(--shadow-soft)] transition duration-300 hover:-translate-y-1 hover:border-[color-mix(in_oklab,var(--accent-cyan)_38%,var(--border-strong))] hover:[box-shadow:var(--shadow-strong)] md:min-h-55 md:p-6"
+            data-reveal="slide-up"
+            style={`--reveal-delay: ${index * 90}ms`}
+          >
             <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,var(--accent-cyan),transparent)] opacity-60" />
-            <div class="pointer-events-none absolute -right-12 top-0 h-28 w-28 rounded-full bg-[var(--accent-cyan)]/10 blur-3xl transition duration-300 group-hover:bg-[var(--accent-coral)]/12" />
+            <div class="pointer-events-none absolute -right-12 top-0 h-28 w-28 rounded-full bg-(--accent-cyan)/10 blur-3xl transition duration-300 group-hover:bg-(--accent-coral)/12" />
 
             <div class="relative flex h-full flex-col">
               <div class="flex items-center gap-4">
-                <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[var(--border-strong)] bg-[color:color-mix(in_oklab,var(--chip)_88%,transparent)] text-[var(--accent-cyan)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-(--border-strong) bg-[color-mix(in_oklab,var(--chip)_88%,transparent)] text-(--accent-cyan) [box-shadow:inset_0_1px_0_rgba(255,255,255,0.05)]">
                   <Icon name={highlight.icon} class="size-5" />
                 </span>
                 <div>
-                  <p class="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[var(--text-muted)]">
+                  <p class="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-(--text-muted)">
                     {content.strengthLabel}
                   </p>
-                  <h3 class="mt-1 font-display text-[1.35rem] leading-tight text-[var(--text-primary)]">
+                  <h3 class="mt-1 font-display text-[1.35rem] leading-tight text-(--text-primary)">
                     {highlight.name}
                   </h3>
                 </div>
               </div>
 
-              <p class="mt-5 max-w-sm text-sm leading-7 text-[var(--text-secondary)]">
+              <p class="mt-5 max-w-sm text-sm leading-7 text-(--text-secondary)">
                 {highlight.description}
               </p>
             </div>
@@ -63,16 +71,19 @@ const { content } = Astro.props;
     </div>
   </div>
 
-  <div class="mt-8">
+  <div class="mt-8" data-reveal="slide-up">
     <p
-      class="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]"
+      class="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-(--text-muted)"
     >
       {content.technologiesLabel}
     </p>
     <div class="mt-4 flex flex-wrap gap-3">
       {
-        content.technologies.map((tech) => (
-          <span class="rounded-lg border border-[var(--border-strong)] bg-[var(--surface-subtle)] px-4 py-2 text-xs font-medium text-[var(--text-primary)]">
+        content.technologies.map((tech, index) => (
+          <span
+            class="tech-chip rounded-lg border border-(--border-strong) bg-(--surface-subtle) px-4 py-2 text-xs font-medium text-(--text-primary)"
+            style={`--chip-delay: ${index * 28}ms`}
+          >
             {tech}
           </span>
         ))

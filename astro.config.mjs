@@ -3,6 +3,11 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+/**
+ * @param {string} path
+ */
+const sourcePath = (path) => new URL(`./src/${path}`, import.meta.url).pathname;
+
 // https://astro.build/config
 export default defineConfig({
   i18n: {
@@ -14,6 +19,18 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        assets: sourcePath('assets'),
+        components: sourcePath('components'),
+        data: sourcePath('data'),
+        layouts: sourcePath('layouts'),
+        pages: sourcePath('pages'),
+        scripts: sourcePath('scripts'),
+        styles: sourcePath('styles'),
+        utils: sourcePath('utils'),
+      },
+    },
     server: {
       allowedHosts: [
         'page-shortly-lifestyle-stomach.trycloudflare.com',

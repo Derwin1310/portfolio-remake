@@ -1,6 +1,6 @@
 ---
-import type { PortfolioContent } from '../../data/portfolio';
-import Icon from '../Icon.astro';
+import type { PortfolioContent } from 'data/portfolio';
+import Icon from 'components/ui/Icon.astro';
 
 interface Props {
   content: PortfolioContent['projects'];
@@ -11,7 +11,7 @@ const { content } = Astro.props;
 
 <section
   id="projects"
-  class="relative border-t border-[var(--border-soft)] py-14"
+  class="relative border-t border-(--border-soft) py-14"
 >
   <div
     class="pointer-events-none absolute inset-0"
@@ -19,15 +19,15 @@ const { content } = Astro.props;
   >
   </div>
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between gap-4">
+    <div class="flex items-center justify-between gap-4" data-reveal="slide-up">
       <p
-        class="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--accent-coral)]"
+        class="text-xs font-semibold uppercase tracking-[0.22em] text-(--accent-coral)"
       >
         {content.eyebrow}
       </p>
       <a
         href="#contact"
-        class="text-sm font-medium text-[var(--accent-cyan)] transition hover:text-[var(--text-primary)]"
+        class="text-sm font-medium text-(--accent-cyan) transition hover:text-(--text-primary)"
       >
         {content.viewAllLabel}
       </a>
@@ -35,29 +35,33 @@ const { content } = Astro.props;
 
     <div class="mt-6 grid gap-5 xl:grid-cols-2">
       {
-        content.items.map((project) => (
-          <article class="grid overflow-hidden rounded-[1rem] border border-[var(--border-strong)] bg-[var(--surface-card)] shadow-[var(--shadow-soft)] md:grid-cols-[0.88fr_1.12fr]">
-            <div class="aspect-[4/4] overflow-hidden bg-[var(--media-bg)] md:aspect-auto">
+        content.items.map((project, index) => (
+          <article
+            class="interactive-card grid overflow-hidden rounded-2xl border border-(--border-strong) bg-(--surface-card) [box-shadow:var(--shadow-soft)] md:grid-cols-[0.88fr_1.12fr]"
+            data-reveal="slide-up"
+            style={`--reveal-delay: ${index * 110}ms`}
+          >
+            <div class="aspect-4/4 overflow-hidden bg-(--media-bg) md:aspect-auto">
               <img
                 src={project.image}
                 alt={project.name}
                 loading="lazy"
-                class="h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
+                class="media-zoom h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
               />
             </div>
             <div class="p-5">
-              <h3 class="font-display text-[1.7rem] text-[var(--text-primary)]">
+              <h3 class="font-display text-[1.7rem] text-(--text-primary)">
                 {project.name}
               </h3>
-              <p class="mt-3 text-sm leading-6 text-[var(--text-secondary)]">
+              <p class="mt-3 text-sm leading-6 text-(--text-secondary)">
                 {project.summary ?? project.description}
               </p>
-              <p class="mt-3 text-sm leading-6 text-[var(--text-secondary)]">
+              <p class="mt-3 text-sm leading-6 text-(--text-secondary)">
                 {project.description}
               </p>
               <div class="mt-4 flex flex-wrap gap-2">
                 {project.techs.map((tech) => (
-                  <span class="rounded-lg border border-[var(--border-strong)] bg-[var(--chip)] px-2.5 py-1 text-[0.7rem] font-medium text-[var(--text-secondary)]">
+                  <span class="rounded-lg border border-(--border-strong) bg-(--chip) px-2.5 py-1 text-[0.7rem] font-medium text-(--text-secondary)">
                     {tech}
                   </span>
                 ))}
@@ -66,7 +70,7 @@ const { content } = Astro.props;
                 href={project.href}
                 target="_blank"
                 rel="noreferrer"
-                class="mt-5 inline-flex items-center gap-2 rounded-lg border border-[var(--border-strong)] px-3 py-2 text-sm font-semibold text-[var(--text-primary)] transition hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
+                class="magnetic-link mt-5 inline-flex items-center gap-2 rounded-lg border border-(--border-strong) px-3 py-2 text-sm font-semibold text-(--text-primary) transition hover:border-(--accent-cyan) hover:text-(--accent-cyan)"
               >
                 <span>{project.cta}</span>
                 <Icon name="external" class="size-4" />

@@ -1,4 +1,5 @@
-import type { Locale } from '../data/portfolio';
+import type { Locale } from "../data/portfolio";
+
 
 export const locales = ['en', 'es'] as const satisfies readonly Locale[];
 export const defaultLocale = 'en' satisfies Locale;

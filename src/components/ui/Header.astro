@@ -1,0 +1,90 @@
+---
+import type { Locale, PortfolioContent } from 'data/portfolio';
+import {
+  getLanguageToggleLabel,
+  getLocaleHomePath,
+  getOppositeLocale,
+} from 'utils/i18n';
+import ThemeToggle from 'components/ui/ThemeToggle.astro';
+
+interface Props {
+  content: PortfolioContent;
+  lang: Locale;
+}
+
+const { content, lang } = Astro.props;
+const nextLocale = getOppositeLocale(lang);
+const languageHref = getLocaleHomePath(nextLocale);
+const languageLabel = getLanguageToggleLabel(lang);
+const languageAriaLabel =
+  lang === 'en' ? 'View site in Spanish' : 'View site in English';
+---
+
+<header
+  class="site-header sticky top-0 z-40 border-b border-[color:var(--border-soft)] bg-[color:color-mix(in_oklab,var(--bg)_82%,transparent)] backdrop-blur-xl"
+>
+  <div
+    class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8"
+  >
+    <a
+      href="#top"
+      class="inline-flex items-center gap-3 text-sm font-semibold tracking-[0.18em] text-[color:var(--text-secondary)] uppercase"
+    >
+      <span class="font-display text-[length:2rem] leading-none">
+        <span class="text-[color:var(--text-primary)]">D</span><span
+          class="text-[color:var(--accent-coral)]">R</span
+        >
+      </span>
+      <span>Derwin Romero</span>
+    </a>
+
+    <nav
+      class="hidden items-center gap-6 text-sm text-[color:var(--text-secondary)] md:flex"
+    >
+      {
+        content.nav.map((item) => (
+          <a
+            href={item.href}
+            class="transition hover:text-[color:var(--text-primary)]"
+            data-nav-link
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href={languageHref}
+        class="magnetic-link inline-flex h-11 items-center rounded-2xl border border-[color:var(--border-strong)] px-4 text-sm font-medium text-[color:var(--text-primary)] transition hover:border-[color:var(--accent-coral)] hover:text-[color:var(--accent-coral)]"
+        aria-label={languageAriaLabel}
+      >
+        {languageLabel}
+      </a>
+      <ThemeToggle />
+    </div>
+  </div>
+
+  <nav class="border-t border-[color:var(--border-soft)] px-4 py-3 md:hidden">
+    <div
+      class="mx-auto flex max-w-6xl gap-4 overflow-x-auto text-sm text-[color:var(--text-secondary)]"
+    >
+      {
+        content.nav.map((item) => (
+          <a
+            href={item.href}
+            class="whitespace-nowrap transition hover:text-[color:var(--text-primary)]"
+            data-nav-link
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+</header>
+
+<script>
+  import 'scripts/active-section';
+</script>

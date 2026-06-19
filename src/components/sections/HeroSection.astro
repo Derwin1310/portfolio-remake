@@ -1,6 +1,6 @@
 ---
-import type { PortfolioContent } from '../../data/portfolio';
-import Icon from '../Icon.astro';
+import type { PortfolioContent } from 'data/portfolio';
+import Icon from 'components/ui/Icon.astro';
 
 interface Props {
   content: PortfolioContent['hero'];
@@ -10,25 +10,36 @@ const { content } = Astro.props;
 ---
 
 <section
-  class="relative mx-auto grid min-h-[calc(100svh-5.25rem)] max-w-6xl items-center gap-12 px-4 pb-18 pt-14 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pb-24 lg:pt-16"
+  class="hero-section relative mx-auto grid min-h-[calc(100svh-5.25rem)] max-w-6xl items-center gap-12 overflow-hidden px-4 pb-18 pt-14 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pb-24 lg:pt-16"
 >
-  <div class="relative z-10">
+  <!-- prettier-ignore -->
+  <div class="hero-background-scene" aria-hidden="true">
+    <span class="hero-grid-plane" />
+    <span class="hero-light-trail hero-light-trail-one" />
+    <span class="hero-light-trail hero-light-trail-two" />
+    <span class="hero-scanline" />
+  </div>
+
+  <div class="relative z-10" data-reveal="slide-up">
     <h1
-      class="max-w-3xl font-display tracking-[-0.04em] text-[var(--text-primary)]"
+      class="max-w-3xl font-display tracking-normal text-(--text-primary)"
     >
-      <span class="block text-5xl font-semibold sm:text-6xl lg:text-[4.35rem]"
+      <span
+        class="block text-5xl font-semibold sm:text-6xl lg:text-[4.35rem]"
         >{content.name}</span
       >
       <span
         class="mt-2 block text-4xl font-semibold sm:text-5xl lg:text-[4rem]"
       >
-        <span class="text-[var(--accent-coral)]">{content.roleAccent}</span>
+        <span class="text-(--accent-coral)"
+          >{content.roleAccent}</span
+        >
         {content.roleTitle}
       </span>
     </h1>
 
     <p
-      class="mt-8 max-w-xl text-lg leading-8 text-[var(--text-secondary)] sm:text-[1.35rem]"
+      class="mt-8 max-w-xl text-lg leading-8 text-(--text-secondary) sm:text-[1.35rem]"
     >
       {content.intro}
     </p>
@@ -37,14 +48,14 @@ const { content } = Astro.props;
       <a
         href={content.resumeHref}
         download="Derwin-Romero-CV.pdf"
-        class="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--accent-coral)] px-6 py-3.5 text-sm font-semibold text-[var(--bg)] shadow-[0_18px_34px_rgba(255,107,129,0.22)] transition hover:translate-y-[-1px]"
+        class="magnetic-link glow-button inline-flex items-center justify-center gap-2 rounded-xl bg-(--accent-coral) px-6 py-3.5 text-sm font-semibold text-(--bg) shadow-[0_18px_34px_rgba(255,107,129,0.22)] transition hover:-translate-y-px"
       >
         <span>{content.primaryCta}</span>
         <Icon name="external" class="size-4" />
       </a>
       <a
         href="#contact"
-        class="inline-flex items-center justify-center rounded-xl border border-[var(--border-strong)] bg-[var(--surface-subtle)] px-6 py-3.5 text-sm font-semibold text-[var(--text-primary)] transition hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)]"
+        class="magnetic-link inline-flex items-center justify-center rounded-xl border border-(--border-strong) bg-(--surface-subtle) px-6 py-3.5 text-sm font-semibold text-(--text-primary) transition hover:border-(--accent-cyan) hover:text-(--accent-cyan)"
       >
         <span>{content.secondaryCta}</span>
       </a>
@@ -52,14 +63,14 @@ const { content } = Astro.props;
 
     <div class="mt-10">
       <p
-        class="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--text-muted)]"
+        class="text-xs font-semibold uppercase tracking-[0.22em] text-(--text-muted)"
       >
         {content.stackLabel}
       </p>
       <div class="mt-5 flex flex-wrap items-center gap-5">
         {
           content.stack.map((tech) => (
-            <span class="text-sm font-semibold text-[var(--text-primary)]/95">
+            <span class="text-sm font-semibold text-(--text-primary)">
               {tech}
             </span>
           ))
@@ -68,21 +79,37 @@ const { content } = Astro.props;
     </div>
   </div>
 
-  <div class="relative">
-    <div
-      class="absolute right-8 top-6 hidden h-52 w-52 rounded-full bg-[var(--accent-cyan)]/18 blur-3xl lg:block"
-    >
-    </div>
-    <div
-      class="absolute left-10 top-1/2 hidden h-40 w-40 -translate-y-1/2 rounded-full bg-[var(--accent-coral)]/18 blur-3xl lg:block"
-    >
-    </div>
-    <div class="relative">
-      <img
-        src="/images/hero-dev-illustration.png"
-        alt="Abstract developer workstation hero visual with code panel and interface glow"
-        class="relative z-10 ml-auto w-full max-w-[42rem] object-contain"
-      />
+  <div class="hero-visual-motion relative z-10" data-reveal="scale-in">
+    <!-- prettier-ignore -->
+    <div class="hero-stage" aria-hidden="true">
+      <div class="hero-stage-halo" />
+      <div class="hero-ring hero-ring-one" />
+      <div class="hero-ring hero-ring-two" />
+
+      <div class="hero-panel hero-panel-main">
+        <span class="hero-panel-bar hero-panel-bar-wide" />
+        <span class="hero-panel-bar" />
+        <span class="hero-panel-bar hero-panel-bar-short" />
+        <span class="hero-panel-meter" />
+      </div>
+
+      <div class="hero-panel hero-panel-small hero-panel-top">
+        <span />
+        <span />
+        <span />
+      </div>
+
+      <div class="hero-panel hero-panel-small hero-panel-bottom">
+        <span />
+        <span />
+        <span />
+      </div>
+
+      <span class="hero-node hero-node-one" />
+      <span class="hero-node hero-node-two" />
+      <span class="hero-node hero-node-three" />
+      <span class="hero-connector hero-connector-one" />
+      <span class="hero-connector hero-connector-two" />
     </div>
   </div>
 </section>

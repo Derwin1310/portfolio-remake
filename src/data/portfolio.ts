@@ -209,7 +209,7 @@ export const portfolioContent = {
         'React',
         'Next.js',
         'Effect',
-        'TanStack suite',
+        'TanStack Suite',
         'GraphQL',
         'Vite',
         'React Native',
@@ -271,7 +271,7 @@ export const portfolioContent = {
             'Delivered end-to-end product features across frontend and backend using TypeScript, React, and Effect. Built AI-enabled workflows, real-time user flows with WebSockets and Effect Stream, and stronger typed service layers that improved team delivery speed and release confidence.',
         },
         {
-          title: 'Full Stack Developer',
+          title: 'Mobile & Web Developer',
           time: 'Jan 2024 - May 2025',
           organization: 'Sainapsis Inc',
           description:

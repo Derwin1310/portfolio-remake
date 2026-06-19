@@ -1,0 +1,46 @@
+---
+import type { Locale, PortfolioContent } from 'data/portfolio';
+import Footer from 'components/ui/Footer.astro';
+import Header from 'components/ui/Header.astro';
+import AboutSection from 'components/sections/AboutSection.astro';
+import ArticlesSection from 'components/sections/ArticlesSection.astro';
+import ContactSection from 'components/sections/ContactSection.astro';
+import ExperienceSection from 'components/sections/ExperienceSection.astro';
+import HeroSection from 'components/sections/HeroSection.astro';
+import ProjectsSection from 'components/sections/ProjectsSection.astro';
+
+interface Props {
+  content: PortfolioContent;
+  lang: Locale;
+}
+
+const { content, lang } = Astro.props;
+---
+
+<div
+  class="relative overflow-x-clip bg-transparent text-[color:var(--text-primary)]"
+  data-portfolio-root
+  data-initial-lang={lang}
+>
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-160"
+    style="background: var(--hero-glow);"
+  >
+  </div>
+  <Header content={content} lang={lang} />
+
+  <main id="top">
+    <HeroSection content={content.hero} />
+    <AboutSection content={content.about} />
+    <ProjectsSection content={content.projects} />
+    <ExperienceSection content={content.experience} />
+    <ArticlesSection content={content.articles} />
+    <ContactSection content={content.contact} />
+  </main>
+
+  <Footer content={content.footer} />
+</div>
+
+<script>
+  import 'scripts/reveal';
+</script>
