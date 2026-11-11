@@ -1,3 +1,7 @@
+import picxplorerImage from 'assets/projects/picxplorer.png';
+import waqooartImage from 'assets/projects/waqooart.jpg';
+import type { ImageMetadata } from 'astro';
+
 export type Locale = 'en' | 'es';
 
 export interface Highlight {
@@ -8,13 +12,30 @@ export interface Highlight {
 
 export interface Project {
   name: string;
-  image: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  imageFit?: 'contain';
   techs: string[];
   summary?: string;
   description: string;
-  cta: string;
-  href: string;
+  link?: { label: string; href: string };
 }
+
+const picxplorer = {
+  name: 'PicXplorer',
+  image: picxplorerImage,
+  imageFit: 'contain',
+  techs: ['React Native', 'Expo', 'TypeScript'],
+} satisfies Partial<Project>;
+
+const waqooart = {
+  name: 'Waqooart',
+  image: waqooartImage,
+  techs: ['Astro', 'TypeScript', 'Tailwind CSS', 'GSAP'],
+} satisfies Partial<Project>;
+
+const picxplorerSource = 'https://github.com/Derwin1310/photos-app';
+const waqooartSite = 'https://waqooart.com';
 
 export interface TimelineEntry {
   title: string;
@@ -233,27 +254,21 @@ export const portfolioContent = {
       viewAllLabel: 'View all projects',
       items: [
         {
-          name: 'Online Pokedex',
-          image:
-            'https://raw.githubusercontent.com/Derwin1310/assets-for-portfolio/main/about-imgs/pokedex.webp',
-          techs: ['React', 'Sass', 'API'],
+          ...picxplorer,
+          imageAlt: '',
           summary:
-            'A lightweight product-style interface built around API consumption and responsive component patterns.',
-          description: 'A pokedex app',
-          cta: 'Visit project',
-          href: 'https://derwin1310.github.io/Pokeapi/',
+            'A photo discovery app and personal journal for iOS and Android.',
+          description:
+            'Explore Unsplash collections, save favorites, and capture photos with captions in an on-device gallery.',
+          link: { label: 'View source', href: picxplorerSource },
         },
         {
-          name: 'Gif Buddy',
-          image:
-            'https://raw.githubusercontent.com/Derwin1310/assets-for-portfolio/main/about-imgs/gif-buddy-img.webp',
-          techs: ['React', 'Vite', 'CSS'],
-          summary:
-            'A search-focused UI with fast feedback loops, simple interaction design, and lightweight frontend architecture.',
+          ...waqooart,
+          imageAlt: 'Waqooart homepage featuring an illustration of Arthas',
+          summary: 'A portfolio and gallery for a fantasy illustrator.',
           description:
-            'A compact GIF search app that reflects my interest in snappy user flows, clean state handling, and frontend polish.',
-          cta: 'Visit project',
-          href: 'https://gif-buddy-app.netlify.app/',
+            'Browse the artwork, explore the commission guide, and follow an illustration from first sketch to final piece in a scroll-driven sketchbook.',
+          link: { label: 'Visit website', href: waqooartSite },
         },
       ],
     },
@@ -443,28 +458,22 @@ export const portfolioContent = {
       viewAllLabel: 'Ver todos los proyectos',
       items: [
         {
-          name: 'Pokedex Online',
-          image:
-            'https://raw.githubusercontent.com/Derwin1310/assets-for-portfolio/main/about-imgs/pokedex.webp',
-          techs: ['React', 'Sass', 'API'],
+          ...picxplorer,
+          imageAlt: '',
           summary:
-            'Un proyecto liviano construido sobre consumo de APIs y patrones de UI responsiva.',
+            'Una app para descubrir fotografia y llevar un diario visual en iOS y Android.',
           description:
-            'Un proyecto frontend construido mientras exploraba la PokeAPI, patrones de UI reutilizables y una arquitectura de informacion mas clara.',
-          cta: 'Visitar proyecto',
-          href: 'https://derwin1310.github.io/Pokeapi/',
+            'Explora colecciones de Unsplash, guarda tus favoritas y captura fotos con notas en una galeria local.',
+          link: { label: 'Ver codigo', href: picxplorerSource },
         },
         {
-          name: 'Gif Buddy',
-          image:
-            'https://raw.githubusercontent.com/Derwin1310/assets-for-portfolio/main/about-imgs/gif-buddy-img.webp',
-          techs: ['React', 'Vite', 'CSS'],
-          summary:
-            'Una experiencia compacta de busqueda de GIFs con resultados rapidos y feedback claro.',
+          ...waqooart,
+          imageAlt:
+            'Pagina de inicio de Waqooart con una ilustracion de Arthas',
+          summary: 'Un portafolio y galeria para un ilustrador de fantasia.',
           description:
-            'Una aplicacion de busqueda de GIFs que refleja mi interes por flujos rapidos, manejo limpio de estado y pulido frontend.',
-          cta: 'Visitar proyecto',
-          href: 'https://gif-buddy-app.netlify.app/',
+            'Recorre la galeria, consulta la guia de encargos y sigue una ilustracion desde el primer boceto hasta la obra final en un cuaderno interactivo.',
+          link: { label: 'Visitar sitio web', href: waqooartSite },
         },
       ],
     },

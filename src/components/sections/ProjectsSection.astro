@@ -9,10 +9,7 @@ interface Props {
 const { content } = Astro.props;
 ---
 
-<section
-  id="projects"
-  class="relative border-t border-(--border-soft) py-14"
->
+<section id="projects" class="relative border-t border-(--border-soft) py-14">
   <div
     class="pointer-events-none absolute inset-0"
     style="background: var(--projects-glow);"
@@ -33,20 +30,27 @@ const { content } = Astro.props;
       </a>
     </div>
 
-    <div class="mt-6 grid gap-5 xl:grid-cols-2">
+    <div class="mt-6 grid gap-5 md:grid-cols-2">
       {
         content.items.map((project, index) => (
           <article
-            class="interactive-card grid overflow-hidden rounded-2xl border border-(--border-strong) bg-(--surface-card) [box-shadow:var(--shadow-soft)] md:grid-cols-[0.88fr_1.12fr]"
+            class="interactive-card flex flex-col overflow-hidden rounded-lg border border-(--border-strong) bg-(--surface-card) [box-shadow:var(--shadow-soft)]"
             data-reveal="slide-up"
             style={`--reveal-delay: ${index * 110}ms`}
           >
-            <div class="aspect-4/4 overflow-hidden bg-(--media-bg) md:aspect-auto">
+            <div class="grid aspect-[8/5] place-items-center overflow-hidden bg-(--media-bg)">
               <img
-                src={project.image}
-                alt={project.name}
+                src={project.image.src}
+                alt={project.imageAlt}
+                width={project.image.width}
+                height={project.image.height}
                 loading="lazy"
-                class="media-zoom h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
+                class:list={[
+                  'media-zoom transition duration-500 hover:scale-[1.03]',
+                  project.imageFit === 'contain'
+                    ? 'h-auto max-h-full max-w-[70%] rounded-lg object-contain'
+                    : 'h-full w-full object-cover',
+                ]}
               />
             </div>
             <div class="p-5">
@@ -66,15 +70,17 @@ const { content } = Astro.props;
                   </span>
                 ))}
               </div>
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noreferrer"
-                class="magnetic-link mt-5 inline-flex items-center gap-2 rounded-lg border border-(--border-strong) px-3 py-2 text-sm font-semibold text-(--text-primary) transition hover:border-(--accent-cyan) hover:text-(--accent-cyan)"
-              >
-                <span>{project.cta}</span>
-                <Icon name="external" class="size-4" />
-              </a>
+              {project.link && (
+                <a
+                  href={project.link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="magnetic-link mt-5 inline-flex items-center gap-2 rounded-lg border border-(--border-strong) px-3 py-2 text-sm font-semibold text-(--text-primary) transition hover:border-(--accent-cyan) hover:text-(--accent-cyan)"
+                >
+                  <span>{project.link.label}</span>
+                  <Icon name="external" class="size-4" />
+                </a>
+              )}
             </div>
           </article>
         ))
